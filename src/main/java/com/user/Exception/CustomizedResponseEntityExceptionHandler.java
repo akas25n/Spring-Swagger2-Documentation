@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice //apply to all controllers
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
 	
+	//ExceptionReponse for Exception class
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
 		ExceptionResponse exceptionResponse = new ExceptionResponse((new Date()), ex.getMessage(), request.getDescription(false));
