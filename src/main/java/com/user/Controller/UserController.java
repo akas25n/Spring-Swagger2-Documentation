@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.user.Exception.UserNotFoundException;
 import com.user.Model.User;
 import com.user.Service.UserService;
 
@@ -26,10 +25,10 @@ public class UserController {
 	}
 	
 	@GetMapping("/users/{id}")
-	public User findSinleUser(@PathVariable int id) {
+	public User findSinleUser(@PathVariable int id) throws Exception {
 		User user = userService.findOne(id); 
 		if (user==null) {
-			throw new UserNotFoundException("id-" + id);
+			throw new Exception("id-" + id);
 		}
 		return user;
 	}
@@ -40,11 +39,11 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/users/{id}")
-	public void deleteUser(@PathVariable int id) {
+	public void deleteUser(@PathVariable int id) throws Exception {
 		User user = userService.deleteById(id);
 		
 		if (user==null) {
-			throw new UserNotFoundException("id-" + id);
+			throw new Exception("id-" + id);
 		}
 	}
 
